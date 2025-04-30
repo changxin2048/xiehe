@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="sidebar-header">
+                <h3>年级列表</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/" class="<%= !locals.activeGrade ? 'active' : '' %>">全部年级</a></li>
+                    <% grades.sort((a, b) => a - b).forEach(grade => { %>
+                        <li>
+                            <a href="/grade/<%= grade %>" class="<%= locals.activeGrade === grade ? 'active' : '' %>">
+                                <%= grade %>级
+                                <span class="student-count"><%= allStudentData[grade] ? allStudentData[grade].students.length : 0 %></span>
+                            </a>
+                        </li>
+                    <% }); %>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部搜索栏 -->
+            <header class="header">
+                <h1><%= title %></h1>
+                <form action="/search" method="GET" class="search-form">
+                    <div class="search-container">
+                        <input type="text" name="q" placeholder="搜索学生姓名..." value="<%= searchQuery %>">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </header>
+
+            <!-- 学生列表区域 -->
+            <div class="content">
+                <% if (searchQuery && (!searchResults || Object.keys(searchResults).length === 0)) { %>
+                    <div class="no-results">
+                        <p>没有找到匹配 "<%= searchQuery %>" 的结果</p>
+                    </div>
+                <% } else { %>
+                    <% Object.keys(studentData).sort((a, b) => a - b).forEach(grade => { %>
+                        <section class="grade-section">
+                            <h2><%= grade %>级录取名单</h2>
+                            <div class="student-grid">
+                                <% studentData[grade].students.forEach(student => { %>
+                                    <div class="student-card">
+                                        <%= student %>
+                                    </div>
+                                <% }); %>
+                            </div>
+                            <% if (studentData[grade].alternates && studentData[grade].alternates.length > 0) { %>
+                                <div class="alternates">
+                                    <h3>候补名单</h3>
+                                    <div class="student-grid alternate-grid">
+                                        <% studentData[grade].alternates.forEach(student => { %>
+                                            <div class="student-card alternate">
+                                                <%= student %>
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </section>
+                    <% }); %>
+                <% } %>
+            </div>
+
+            <!-- 页脚 -->
+            <footer class="footer">
+                <p>© <%= new Date().getFullYear() %> 北京协和医学院4+4临床医学教育项目录取名单</p>
+                <p>数据更新日期: <%= new Date().getFullYear() %>年</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

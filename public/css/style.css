@@ -1,0 +1,354 @@
+/* 基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* 应用容器 */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    position: relative; /* Needed for absolute positioning of the toggle button */
+    width: 220px;
+    background-color: #483d8b;
+    color: #f5f5f5;
+    padding: 20px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed .sidebar-header h3,
+.sidebar.collapsed .sidebar-nav ul {
+    display: none; /* Hide text content when collapsed */
+}
+
+.sidebar.collapsed .sidebar-nav a {
+    justify-content: center;
+    margin-right: 0;
+    border-radius: 0;
+}
+
+.sidebar.collapsed .sidebar-nav a .student-count {
+    display: none; /* Hide count when collapsed */
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+}
+
+.sidebar-header h3 {
+    font-size: 1.3rem;
+    color: #b19cd9;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 15px 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 8px;
+}
+
+.sidebar-nav a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0 25px 25px 0;
+    margin-right: 10px;
+    font-weight: 400;
+}
+
+.sidebar-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #b19cd9;
+    transform: translateX(5px);
+}
+
+.sidebar-nav a.active {
+    background-color: #8a2be2;
+    color: #fff;
+    border-left: 4px solid #6a5acd;
+    font-weight: 500;
+}
+
+.student-count {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.8rem;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed .sidebar-header h3,
+.sidebar.collapsed .sidebar-nav ul {
+    display: none; /* Hide text content when collapsed */
+}
+
+.sidebar.collapsed .sidebar-nav a {
+    justify-content: center;
+    margin-right: 0;
+    border-radius: 0;
+}
+
+.sidebar.collapsed .sidebar-nav a .student-count {
+    display: none; /* Hide count when collapsed */
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    right: 10px; /* Position outside the sidebar */
+    background-color: #8a2be2;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.sidebar-toggle:hover {
+    background-color: #6a5acd;
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    /* Adjust position or icon if needed when collapsed */
+    transform: rotate(180deg); /* Rotate arrow */
+}
+
+.sidebar-nav a:hover .student-count {
+    background-color: #6a5acd;
+}
+
+.sidebar-nav a.active .student-count {
+    background-color: #6a5acd;
+}
+
+/* 主内容区样式 */
+.main-content {
+    transition: margin-left 0.3s ease; /* Add transition for smooth margin change */
+    flex: 1;
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* 头部样式 */
+.header {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.search-form {
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-container {
+    display: flex;
+    position: relative;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: #8a2be2;
+}
+
+.search-container button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #8a2be2;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-container button:hover {
+    background: #6a5acd;
+}
+
+/* 内容区样式 */
+.content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.grade-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.grade-section:last-child {
+    border-bottom: none;
+}
+
+.grade-section h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 4px solid #8a2be2;
+}
+
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.student-card {
+    background-color: #f0f8ff;
+    padding: 15px 10px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.student-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.alternates {
+    margin-top: 20px;
+}
+
+.alternates h3 {
+    color: #7f8c8d;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.alternate-grid {
+    opacity: 0.8;
+}
+
+.student-card.alternate {
+    background-color: #f5f5f5;
+    color: #7f8c8d;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 0;
+    color: #7f8c8d;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 60px; /* Adjust margin when sidebar is collapsed */
+}
+
+/* 页脚样式 */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar,
+    .sidebar-toggle {
+    position: relative; /* Needed for absolute positioning of the toggle button */
+        width: 100%;
+        height: auto;
+        display: none; /* Hide sidebar and toggle on small screens */
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px 0;
+    }
+    
+    .sidebar.collapsed + .main-content {
+        margin-left: 0; /* Ensure no margin when hidden */
+    }
+
+    .main-content {
+    transition: margin-left 0.3s ease; /* Add transition for smooth margin change */
+        margin-left: 0;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .student-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
