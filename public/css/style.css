@@ -216,10 +216,10 @@ body {
 
 .search-container button {
     position: absolute;
-    right: 5px;
+    right: 4px;
     top: 50%;
     transform: translateY(-50%);
-    background: #8a2be2;
+    background: #6e2be2;
     border: none;
     color: white;
     width: 40px;
