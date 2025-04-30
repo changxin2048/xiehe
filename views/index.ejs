@@ -58,9 +58,17 @@
                             <h2><%= grade %>级录取名单（<%= studentData[grade].students.length %>人）</h2>
                             <div class="student-grid">
                                 <% studentData[grade].students.forEach(student => { %>
-                                    <div class="student-card">
-                                        <%= student %>
-                                    </div>
+                                    <% if (student === '董袭莹') { %>
+                                        <a href="/student/dongxiying" style="text-decoration: none; color: inherit;">
+                                            <div class="student-card">
+                                                <%= student %>
+                                            </div>
+                                        </a>
+                                    <% } else { %>
+                                        <div class="student-card">
+                                            <%= student %>
+                                        </div>
+                                    <% } %>
                                 <% }); %>
                             </div>
                             <% if (studentData[grade].alternates && studentData[grade].alternates.length > 0) { %>

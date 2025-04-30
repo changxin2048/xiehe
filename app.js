@@ -92,6 +92,13 @@ app.get('/search', (req, res) => {
   });
 });
 
+// 学生详情路由
+app.get('/student/dongxiying', (req, res) => {
+  // For now, we only have details for 董袭莹
+  // In the future, you might fetch student details based on a parameter
+  res.render('student-detail'); 
+});
+
 // 年级筛选路由
 app.get('/grade/:year', (req, res) => {
   const year = req.params.year;
