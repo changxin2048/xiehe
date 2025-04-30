@@ -211,7 +211,23 @@ body {
 }
 
 .search-container input:focus {
+    padding-right: 80px;
+
     border-color: #8a2be2;
+}
+
+.clear-icon {
+    display: none;
+    position: absolute;
+    right: 55px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adabc1;
+    cursor: pointer;
+}
+
+.clear-icon.visible {
+    display: block;
 }
 
 .search-container button {
@@ -219,11 +235,12 @@ body {
     right: 4px;
     top: 50%;
     transform: translateY(-50%);
-    background: #6e2be2;
+    background: #5725e2;
     border: none;
     color: white;
     width: 40px;
     height: 40px;
+    max-height: 86%;
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.3s;
