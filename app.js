@@ -81,7 +81,17 @@ app.get('/search', (req, res) => {
       }
     });
   }
+
+  // 如果是AJAX请求，返回JSON格式的搜索结果
+  if (req.xhr || req.headers.accept.includes('application/json')) {
+    return res.json({
+      studentData: query ? results : studentData,
+      searchQuery: query,
+      searchResults: Object.keys(results).length > 0 ? results : null
+    });
+  }
   
+  // 否则渲染完整页面
   res.render('index', { 
     title: '北京协和医学院4+4临床医学教育项目录取名单',
     grades: Object.keys(studentData),
