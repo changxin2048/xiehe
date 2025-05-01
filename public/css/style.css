@@ -375,11 +375,12 @@ body {
     
     .student-grid {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
     }
     
     .student-card {
         padding: 10px 0px;
-        font-size: 0.9rem;
-        
+        min-width: 22px;
+        width: auto;
     }
 }
